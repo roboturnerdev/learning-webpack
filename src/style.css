@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'butter';
+    src: url('./Cottonbutter.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+.hello {
+    color: red;
+    font-family: 'butter';
+    background: url('./robsax.jpeg');
+}
