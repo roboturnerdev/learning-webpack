@@ -1,6 +1,26 @@
 import _ from 'lodash';
 import './style.css';
 import RobSax from './robsax.jpeg';
+import Data from './data.xml';
+import Notes from './data.csv';
+import toml from './data.toml';
+import yaml from './data.yaml';
+import json from './data.json5';
+
+console.log(toml.title);        // output 'TOML Example'
+console.log(toml.owner.name);   // output 'Tom Preston-Warner'
+
+console.log(yaml.title);
+console.log(yaml.owner.name);
+
+console.log(json.title);
+console.log(json.owner.name);
+
+// Let's say you want to use /my-component in another project,
+//  copy or move it into the /components directory over there.
+//   As long as you've installed any external dependencies and your
+//    configuration has the same loaders defined, you should be good to go.
+
 
 function component() {
     const element = document.createElement('div');
@@ -11,6 +31,24 @@ function component() {
     myRobert.src = RobSax;
 
     element.appendChild(myRobert);
+
+    console.log(Data);
+    console.log(Notes);
+
+    // Tip
+    // This can be especially helpful when implementing some sort of
+    // data visualization using a tool like d3. Instead of making an
+    // ajax request and parsing the data at runtime you can load it into
+    // your module during the build process so that the parsed data is 
+    // ready to go as soon as the module hits the browser.
+    // Poggers
+
+    // WARNING
+    // only the default export of JSON modules can be used without warning
+    // no warning
+    // import data from './data.json'
+    // warning, not allowed
+    // import { foo } from './data.json'
 
     return element;
 }

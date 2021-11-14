@@ -1,4 +1,7 @@
 const path = require('path');
+const toml = require('toml');
+const yaml = require('yamljs');
+const json5 = require('json5');
 
 module.exports = {
     entry: './src/index.js',
@@ -20,9 +23,53 @@ module.exports = {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
                 type: 'asset/resource',
             },
+            {
+                test: /\.(csv|tsv)$/i,
+                use: ['csv-loader'],
+            },
+            {
+                test: /\.xml$/i,
+                use: ['xml-loader'],
+            },
+            {
+                test: /\.toml$/i,
+                type: 'json',
+                parser: {
+                    parse: toml.parse,
+                },
+            },
+            {
+                test: /\.yaml$/i,
+                type: 'json',
+                parser: {
+                    parse: yaml.parse,
+                },
+            },
+            {
+                test: /\.json5$/i,
+                type: 'json',
+                parser: {
+                    parse: json5.parse,
+                },
+            },
         ],
     },
 };
+
+// resolve alias
+// used to import or require certain modules more easily
+// i.e. alias a bunch of commonly used src/ files
+// resolve: {
+//     alias: {
+//         Utilities$: path.resolve(__dirname, 'src/utilities/'),
+//         Templates$: path.resolve(__dirname, 'src/templates/'),
+//     },
+// },
+// now instead of using relative paths when importing like:
+// import Utility from '../../utilities/utility';
+// use alias
+// import Utility from 'Utilities/utility';
+// a trailing $ can be added to given object's keys to signify an exact match
 
 // Module loaders can be chained. Each loader in the chain 
 // applies transformations to the processed resource. A chain is 
