@@ -1,41 +1,20 @@
 import _ from 'lodash';
-import './style.css';
-import RobSax from './robsax.jpeg';
-import Data from './data.xml';
-import Notes from './data.csv';
-import toml from './data.toml';
-import yaml from './data.yaml';
-import json from './data.json5';
 
-console.log(toml.title);        // output 'TOML Example'
-console.log(toml.owner.name);   // output 'Tom Preston-Warner'
 
-console.log(yaml.title);
-console.log(yaml.owner.name);
+function component() {
+    const element = document.createElement('div');
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    return element;
+}
 
-console.log(json.title);
-console.log(json.owner.name);
+document.body.appendChild(component());
 
 // Let's say you want to use /my-component in another project,
 //  copy or move it into the /components directory over there.
 //   As long as you've installed any external dependencies and your
 //    configuration has the same loaders defined, you should be good to go.
 
-
-function component() {
-    const element = document.createElement('div');
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
-
-    const myRobert = new Image();
-    myRobert.src = RobSax;
-
-    element.appendChild(myRobert);
-
-    console.log(Data);
-    console.log(Notes);
-
-    // Tip
+// Tip regarding data loading
     // This can be especially helpful when implementing some sort of
     // data visualization using a tool like d3. Instead of making an
     // ajax request and parsing the data at runtime you can load it into
@@ -49,11 +28,6 @@ function component() {
     // import data from './data.json'
     // warning, not allowed
     // import { foo } from './data.json'
-
-    return element;
-}
-
-document.body.appendChild(component());
 
 // implicit dependencies between script tags. our index.js file
 // depends on lodash being included in the page before it runs
